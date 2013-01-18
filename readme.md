@@ -1,1 +1,1 @@
-just a test file,ignore it
+jsdate is a date plugin,depand on jquery and mustache.

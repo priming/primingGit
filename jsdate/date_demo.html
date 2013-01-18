@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="../lib/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/mustache/mustache.js"></script>
+<script type="text/javascript" src="date_demo.js"></script>
+<!--月日历模板-->
+<script type="text/template" id="date-temp">
+<div class="date-container">
+<div class="control-line">
+	<a class="pre-btn"><<上个月</a>
+	<a class="next-btn">下个月>></a>
+	<span id="now-date">{{nowDate}}</span>
+</div>
+<table border="0" cellspacing="0" cellpadding="0" class="date-table">
+    <tr>
+        <th>Sun</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+    </tr>
+	{{#dateWeek}}
+    <tr>
+		{{#date}}
+        <td class="{{useless}}">{{dateDay}}</td>
+        {{/date}}
+    </tr>
+	{{/dateWeek}}
+</table>
+</div>
+</script>
+
+<!--周日历模板-->
+<script type="text/template" id="week-temp">
+<div class="week-container">
+<div class="control-line">
+	<a class="pre-btn"><<上一周</a>
+	<a class="next-btn">下一周>></a>
+	<span id="now-date-week">{{nowDate}}</span>
+</div>
+<table border="0" cellspacing="0" cellpadding="0" class="week-table">
+    <tr>
+        <th class="first-menu">Class Time</th>
+        <th>0:00</th>
+        <th>1:00</th>
+        <th>2:00</th>
+        <th>3:00</th>
+        <th>4:00</th>
+        <th>5:00</th>
+		<th>6:00</th>
+        <th>7:00</th>
+        <th>8:00</th>
+        <th>9:00</th>
+        <th>10:00</th>
+        <th>11:00</th>
+		<th>12:00</th>
+        <th>13:00</th>
+        <th>14:00</th>
+        <th>15:00</th>
+        <th>16:00</th>
+        <th>17:00</th>
+		<th>18:00</th>
+        <th>19:00</th>
+        <th>20:00</th>
+        <th>21:00</th>
+        <th>22:00</th>
+        <th>23:00</th>
+    </tr>
+	{{#dateWeek}}
+    <tr>
+		<td class="day">{{month}}-{{date}} {{day}}</td>
+		{{#hours}}
+        <td class="{{useless}}" rel="{{utc}}">{{&hour}}</td>
+        {{/hours}}
+    </tr>
+	{{/dateWeek}}
+</table>
+</div>
+</script>
+<style type="text/css">
+<!--
+/*月日历样式*/
+.date-container{width:400px; font-size:14px;}
+.control-line{ text-align:center; position:relative; line-height:22px;}
+.control-line a{ cursor:pointer; position:absolute;}
+.control-line .pre-btn{ left:0; top:0;}
+.control-line .next-btn{ right:0; top:0;}
+.date-table{border-top:1px solid #ccc; border-left:1px solid #ccc; width:100%;}
+.date-table th{ background:#eee;}
+.date-table th,
+.date-table td{border-right:1px solid #ccc; border-bottom:1px solid #ccc; text-align:center; padding:5px;}
+.date-table .unselected{ background:#ddd; color:#666;}
+
+/*周日历样式*/
+.week-container{ width:932px;}
+.week-table{border-top:1px solid #ccc; border-left:1px solid #ccc; width:932px;}
+.week-table th{ background:#eee; width:35px; background:#eee; font-weight:normal;}
+.week-table th.first-menu{width:66px;}
+.week-table th,
+.week-table td{border-right:1px solid #ccc; font-size:12px; border-bottom:1px solid #ccc; text-align:center; background:#eee;}
+.week-table td{ height:30px;}
+.week-table td.checkable,.week-table td.checked{ background:#fff;}
+.week-table td .check-old{ display:block; background:#9F3; height:30px;}
+.week-table td.selected-now{ background:#CF9;}
+-->
+</style>
+</head>
+
+<body>
+<div class="date-con"></div>
+<div class="fn-test"></div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        $(".date-con").creatDate({temp:$("#date-temp"),model:"month"});
+        $(".fn-test").creatDate({temp:$("#week-temp"),model:"week"});
+    })
+</script>
+</html>
